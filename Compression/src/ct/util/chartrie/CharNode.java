@@ -32,10 +32,10 @@ public class CharNode {
 		}
 	}
 
-	public void addEntry(char[] line) {
+	public void addEntry(String line) {
 		CharNode t = this;
-		for (int ind = 0; ind < line.length; ind++) {
-			t = t.getChild(line[ind]);
+		for (int ind = 0; ind < line.length(); ind++) {
+			t = t.getChild(line.charAt(ind));
 		}
 	}
 

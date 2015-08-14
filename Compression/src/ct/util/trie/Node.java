@@ -52,8 +52,13 @@ public class Node {
 		return true;
 	}
 
-	public Entry<String, Node> leftMostChild() {
-		return children.firstEntry();
+	public Entry<String, Node> firstUnusedChild() {
+		for (Map.Entry<String, Node> child : children.entrySet()) {
+			if (!child.getValue().isUsed()) {
+				return child;
+			}
+		}
+		return null;
 	}
 
 	public Entry<String, Node> getHeaviestChild() {
@@ -101,7 +106,7 @@ public class Node {
 			branch.push(new Pair<Integer, Node>(0, this));
 		}
 		while (true) {
-			Map.Entry<String, Node> child = t.getHeaviestChild();
+			Map.Entry<String, Node> child = primary ? t.getHeaviestChild() : t.firstUnusedChild();
 			if (child == null) {
 				break;
 			}

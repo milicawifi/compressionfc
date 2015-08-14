@@ -28,9 +28,11 @@ public class CompactNode {
 
 	public String getB() {
 		StringBuilder sb = new StringBuilder();
-		for (Triplet<Character, Integer, CompactNode> child : children) {
-			sb.append(child.first);
-			sb.append(child.third.getL());
+		for (int i = children.size()-1 ; i>=0; i--) {
+			sb.append(children.get(i).first);
+		}
+		for (int i = 0; i <children.size(); i++) {
+			sb.append(children.get(i).third.getB());
 		}
 		return sb.toString();
 	}

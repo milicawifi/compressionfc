@@ -23,7 +23,7 @@ public class Application {
 			if (line == null) {
 				break;
 			}
-			charTrie.addEntry(line.toLowerCase().toCharArray());
+			charTrie.addEntry(line.toLowerCase());
 		}
 		System.out.println("trie:");
 		Trie trie = Trie.convert(charTrie);
