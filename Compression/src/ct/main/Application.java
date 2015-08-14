@@ -4,12 +4,13 @@ import java.io.IOException;
 
 import ct.util.DictFile;
 import ct.util.chartrie.CharNode;
+import ct.util.compacttrie.CompactTrie;
 import ct.util.trie.Trie;
 
 public class Application {
 
 	private DictFile inputFile;
-	private Trie trie;
+	private CompactTrie compactTrie;
 
 	public Application(String inputFilePath) throws IOException {
 		inputFile = new DictFile(inputFilePath);
@@ -24,10 +25,12 @@ public class Application {
 			}
 			charTrie.addEntry(line.toLowerCase().toCharArray());
 		}
-		charTrie.print();
 		System.out.println("trie:");
-		trie = Trie.convert(charTrie);
+		Trie trie = Trie.convert(charTrie);
 		trie.print();
+		System.out.println("compact trie:");
+		compactTrie = trie.compact();
+		compactTrie.print("");
 	}
 
 	public static void main(String[] args) {
