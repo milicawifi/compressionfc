@@ -25,6 +25,7 @@ public class TrieTest {
 	
 	@Test
 	public void testSerialize() {
+		
 	}
 
 }

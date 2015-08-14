@@ -31,6 +31,8 @@ public class Application {
 		System.out.println("compact trie:");
 		compactTrie = trie.compact();
 		compactTrie.print("");
+		System.out.println("Serialized:");
+		System.out.println(compactTrie.serialize());
 	}
 
 	public static void main(String[] args) {

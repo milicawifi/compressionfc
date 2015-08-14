@@ -21,14 +21,48 @@ public class CompactNode {
 	public void print(String whitespaces) {
 		System.out.println(label);
 		for (Triplet<Character, Integer, CompactNode> child : children){
-			System.out.print(whitespaces+child.second+ child.first);
+			System.out.print(whitespaces+child.first);
 			child.third.print(whitespaces+" ");
 		}
 	}
 
-	public String serialize() {
+	public String getB() {
+		StringBuilder sb = new StringBuilder();
+		for (Triplet<Character, Integer, CompactNode> child : children) {
+			sb.append(child.first);
+			sb.append(child.third.getL());
+		}
+		return sb.toString();
+	}
+	
+	public String getBP() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < children.size(); i++) {
+			sb.append("(");
+		}
+		sb.append(")");
+		for (Triplet<Character, Integer, CompactNode> child: children) {
+		  sb.append(child.third.getBP());
+		}
+		return sb.toString();
+	}
+	
+	public String getL() {
 		StringBuilder sb = new StringBuilder(label);
-		
+		for (Triplet<Character, Integer, CompactNode> child : children) {
+			sb.append(child.third.getL());
+		}
+		return sb.toString();
+	}
+	
+	public String serialize() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("B:\t");
+		sb.append(getB());
+		sb.append("\nL:\t");
+		sb.append(getL());
+		sb.append("\nBP:\t(");
+		sb.append(getBP());
 		return sb.toString();
 	}
 }

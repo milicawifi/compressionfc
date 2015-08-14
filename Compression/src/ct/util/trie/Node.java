@@ -108,6 +108,9 @@ public class Node {
 			Node childNode = child.getValue();
 			branch.push(new Pair<Integer, Node>(child.getKey().length(), childNode));
 			sb.append(child.getKey());
+			if (childNode.numOfChildren() > 0) {
+			  sb.append(childNode.numOfChildren()-1);
+			}
 			childNode.setUsed();
 			t = childNode;
 		}
@@ -132,6 +135,10 @@ public class Node {
 		return new Pair<Character, CompactNode>(edge, compactNode);
 	}
 	
+	private int numOfChildren() {
+		return children.size();
+	}
+
 	private boolean hasUnusedChildren() {
 		for (Map.Entry<String, Node> child : children.entrySet()) {
 			if (!child.getValue().isUsed()) {
